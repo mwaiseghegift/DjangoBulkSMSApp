@@ -4,6 +4,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import phoneOTP
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from decouple import config
+
+#africanstalking initialization
+import africastalking
+username = "RETECH-ORG"
+api_key = config("api_key")
+africastalking.initialize(username, api_key)
+sms_provider = africastalking.SMS
 # Create your views here.
 
 
@@ -29,6 +37,11 @@ def request_otp(request):
             otp = otp,    
         )
         otp_model.save()
+        sms = sms_provider
+        sender_id = "RETECH"
+        sms_content = f"Your phone verification code is {otp}"
+        recipients = [str(phone_no)]
+        response = sms.send(sms_content, recipients)
         return HttpResponseRedirect(reverse('accounts:enter-otp'))
     return render(request, "enter-phone.html",{})
 
