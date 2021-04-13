@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 import africastalking
 from decouple import config
+import random
 # Create your views here.
 
 username = "RETECH-ORG"
@@ -19,6 +20,11 @@ def Send_Text(request):
         sms = sms_afr
         sender_id = "RETECH"
         content = sms_content
-        recepients = ["+254729754363","+254712860997"]
+        recepients = []
         response = sms.send(content, recepients)
         return HttpResponse(dict(response))
+    
+def generate(request):
+    number = random.randint(10000,11000)
+    print(number)
+    return HttpResponse(number)
