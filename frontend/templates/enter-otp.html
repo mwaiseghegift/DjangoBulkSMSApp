@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 
-
 {% block body %}
-    <form action="" method="post">
-        <input type="text" name="phone-no" id="" placeholder="Enter a phone">
+    <form action="{% url 'accounts:enter-otp' %}" method="POST">{% csrf_token %}
+        <input type="text" name="user-otp" id="" placeholder="Enter the digits">
         <button type="submit">Submit</button>
     </form>
 {% endblock body %}

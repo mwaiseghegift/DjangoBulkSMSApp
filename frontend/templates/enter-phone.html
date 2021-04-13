@@ -3,7 +3,7 @@
 
 
 {% block body %}
-    <form action="" method="post">
+    <form action="" method="POST">{% csrf_token %}
         <input type="text" name="phone-no" id="" placeholder="Enter a phone">
         <button type="submit">Submit</button>
     </form>

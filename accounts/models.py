@@ -6,11 +6,10 @@ from django.utils.text import slugify
 User = get_user_model()
 
 class phoneOTP(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=12, default="+254")
-    otp = models.IntegerField()
+    otp = models.IntegerField(null=True)
     is_confirmed = models.BooleanField(default=False)
-    
     
     def __str__(self):
         return f"{str(self.phone)} has been sent {str(self.otp)}"
