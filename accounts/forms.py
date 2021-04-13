@@ -1,5 +1,8 @@
 from django import forms
-from .models import phoneOTP
+from .models import PhoneDb
 
 class phoneVerificationForm(forms.ModelForm):
-    model = phoneOTP
+    model = PhoneDb
+    
+class ResetEmailForm(forms.Form):
+    email = forms.EmailField()
