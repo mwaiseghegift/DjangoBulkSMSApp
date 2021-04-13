@@ -24,7 +24,3 @@ def Send_Text(request):
         response = sms.send(content, recepients)
         return HttpResponse(dict(response))
     
-def generate(request):
-    number = random.randint(10000,11000)
-    print(number)
-    return HttpResponse(number)
