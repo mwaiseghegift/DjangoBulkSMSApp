@@ -8,7 +8,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from .utils import token_gen
 from django.contrib.auth import authenticate, login, logout
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
+from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
 from django.core.mail import send_mail
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from .forms import ResetEmailForm
@@ -22,7 +22,7 @@ from django.contrib.auth.models import User
 #africanstalking initialization
 import africastalking
 username = "RETECH-ORG"
-api_key = config("api_key")
+api_key = config("API_KEY")
 africastalking.initialize(username, api_key)
 sms_provider = africastalking.SMS
 # Create your views here.
@@ -128,7 +128,7 @@ def RegisterView(request):
 
 def VerificationView(request,uidb64, token):
 
-    uidb = force_text(urlsafe_base64_decode(uidb64)) or None
+    uidb = force_str(urlsafe_base64_decode(uidb64)) or None
     user = User.objects.get(pk=uidb) or None
 
         

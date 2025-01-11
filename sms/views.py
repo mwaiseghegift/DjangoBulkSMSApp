@@ -5,7 +5,7 @@ import random
 # Create your views here.
 
 username = "RETECH-ORG"
-api_key = config("api_key")
+api_key = config("API_KEY")
 africastalking.initialize(username, api_key)
 
 # Initialize a service e.g. SMS
